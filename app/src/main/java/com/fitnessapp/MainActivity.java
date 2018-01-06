@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addTrainer() {
-        Trainer trainer = new Trainer("Trainer 1", "Running", "500/hr", 4.5, 3);
+        Trainer trainer = new Trainer("Trainer 1", "Running", "500/hr", "Hyderabad", 4.5, 3);
 
         FirebaseDataManager.getInstance().addTrainer(trainer, new IDataManager.AddTrainerCallBack() {
             @Override

@@ -2,7 +2,6 @@ package com.fitnessapp.data.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.Random;
 import java.util.UUID;
 
 @IgnoreExtraProperties
@@ -23,13 +22,15 @@ public class Trainer {
     String name;
     String skill;
     String fee;
+    String location;
     double rating;
     double experience;
 
-    public Trainer(String name, String skill, String fee, double rating, double experience) {
+    public Trainer(String name, String skill, String fee, String location, double rating, double experience) {
         this.name = name;
         this.skill = skill;
         this.fee = fee;
+        this.location = location;
         this.rating = rating;
         this.experience = experience;
     }
