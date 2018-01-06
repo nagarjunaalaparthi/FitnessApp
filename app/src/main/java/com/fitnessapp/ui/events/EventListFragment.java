@@ -30,7 +30,7 @@ public class EventListFragment extends Fragment implements IEventListView{
     private RecyclerView mRecyclerView;
     private List<Event> mEventList;
     private EventListAdapter mAdapter;
-
+    private EventListPresenter mPresenter;
 
     public static EventListFragment getInstance(){
         EventListFragment fragment = new EventListFragment();
@@ -45,8 +45,18 @@ public class EventListFragment extends Fragment implements IEventListView{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events,container);
-       // mPresenter = new EventListPresenter(Injection.provideFitnessRepository(), this);
-        addEvents();
+        mPresenter = new EventListPresenter(Injection.provideFitnessRepository(), this);
+        Event event = new Event("Running Event", "05/01/2018", "1 day", "Running", "Running Event"
+                , "Madhapur");
+
+        Event event1 = new Event("Cycling Event", "05/01/2018", "1 day", "Cycling", "Running Event"
+                , "Kukatpally");
+
+        Event event2 = new Event("Climbing Event", "05/01/2018", "1 week", "Climbing", "Running Event"
+                , "Nanakramguda");
+        addEvents(event1);
+        addEvents(event2);
+        addEvents(event);
         initView(view);
         return view;
     }
@@ -58,13 +68,11 @@ public class EventListFragment extends Fragment implements IEventListView{
         mAdapter =  new EventListAdapter(getContext());
         mRecyclerView.setAdapter(mAdapter);
 
-
+        mPresenter.loadEvents(true);
     }
 
 
-    private void addEvents(){
-        Event event = new Event("Running Event", "05/01/2018", "1 week", "Running", "Rum=nning Event"
-                , "Madhapur");
+    private void addEvents(Event event){
 
         FirebaseDataManager.getInstance().addEvent(event, new IDataManager.AddEventsCallBack() {
             @Override
@@ -92,6 +100,8 @@ public class EventListFragment extends Fragment implements IEventListView{
 
     @Override
     public void showEvents(List<Event> eventList) {
-
+        if(eventList != null && !eventList.isEmpty()){
+            mAdapter.setEventList(eventList);
+        }
     }
 }
