@@ -1,9 +1,9 @@
 package com.fitnessapp.data;
 
 import android.support.annotation.NonNull;
-
-import com.fitnessapp.data.model.Trainer;
+import com.fitnessapp.data.model.Event;
 import com.fitnessapp.data.model.Goal;
+import com.fitnessapp.data.model.Trainer;
 import java.util.List;
 
 /**
@@ -12,26 +12,37 @@ import java.util.List;
 
 public interface IDataManager {
 
-  interface  LoadGoalsCallback {
+  interface LoadGoalsCallback {
     void onGoalsLoaded(List<Goal> goalList);
   }
-  interface  LoadGoalCallback {
+
+  interface LoadGoalCallback {
     void onGoalLoaded(Goal goal);
   }
 
-  interface  LoadTrainersCallback {
+  interface LoadTrainersCallback {
     void onTrainersLoaded(List<Trainer> trainers);
   }
-  interface  LoadTrainerCallback {
+
+  interface LoadTrainerCallback {
     void onTrainerLoaded(Trainer trainer);
+  }
+
+  interface SearchEventsCallback {
+    void onSearchEventResults(List<Event> eventList);
+
+    void onError(String message);
   }
 
   interface AddTrainerCallBack {
     void onTrianerAdded();
+
     void onError(String message);
   }
 
   void loadGoals(@NonNull IDataManager.LoadGoalsCallback callback);
+
+  void searchEventsByLocation(String address, @NonNull IDataManager.SearchEventsCallback callback);
 
   void loadGoal(@NonNull String goalId, @NonNull IDataManager.LoadGoalCallback callback);
 
@@ -40,5 +51,4 @@ public interface IDataManager {
   void loadTrainer(@NonNull String goalId, @NonNull IDataManager.LoadTrainerCallback callback);
 
   void addTrainer(@NonNull Trainer trainer, @NonNull IDataManager.AddTrainerCallBack callback);
-
 }

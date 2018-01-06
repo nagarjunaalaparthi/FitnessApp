@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@color/colorPrimary"
+      android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/text_search_view"
+        style="@style/EventSearchStyle"
+        android:layout_weight="1"
+        android:imeOptions="actionDone"
+        android:hint="@string/hint_search_events" />
+
+    <TextView
+        android:id="@+id/label_cancel"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/base_padding_half"
+        android:text="@string/label_cancel"
+        android:textColor="@color/white" />
+  </LinearLayout>
+
+  <com.fitnessapp.ui.customui.CustomRecycleViewLayout
+      android:id="@+id/search_events_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:visibility="visible" />
+</LinearLayout>
