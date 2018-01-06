@@ -4,14 +4,13 @@
     android:id="@+id/nav_header_main_container"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@drawable/account_bg"
+    android:background="@android:color/white"
     android:orientation="horizontal"
     android:paddingBottom="12dp"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:paddingTop="12dp"
-    android:gravity="center"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:gravity="center">
 
     <TextView
         android:id="@+id/profile_name_nav"
@@ -23,12 +22,11 @@
         android:paddingRight="12dp"
         android:paddingStart="12dp"
         android:textAlignment="center"
-        android:text="Projects We Love"
+        android:text="Welcome"
         android:fontFamily="sans-serif-smallcaps"
         android:textStyle="bold"
         android:textSize="16dp"
-        android:textColor="@color/colorPrimary"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textColor="@color/colorPrimary" />
 
 
 </LinearLayout>
