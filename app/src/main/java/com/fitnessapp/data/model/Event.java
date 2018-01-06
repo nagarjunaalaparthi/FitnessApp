@@ -15,6 +15,15 @@ public class Event {
     private String description;
     private String location;
 
+    public Event(String name, String date, String duration, String category, String description,
+                 String location){
+        this.name = name;
+        this.date = date;
+        this.duration = duration;
+        this.category = category;
+        this.description = description;
+        this.location = location;
+    }
     public String getId() {
         return id;
     }
