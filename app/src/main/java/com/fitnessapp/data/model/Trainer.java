@@ -22,6 +22,15 @@ public class Trainer {
     String name;
     String skill;
     String fee;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     String location;
     double rating;
     double experience;

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.fitnessapp.R;
 import com.fitnessapp.navigation.NavListAdapter;
+import com.fitnessapp.ui.trainers.TrainersFragment;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,8 @@ public class BaseActivity extends AppCompatActivity {
         navListRecycler.setLayoutManager(navListManager);
         navListAdapter = new NavListAdapter(this, navItems);
         navListRecycler.setAdapter(navListAdapter);
+
+        setContentView(new TrainersFragment());
     }
 
 

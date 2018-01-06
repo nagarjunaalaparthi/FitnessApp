@@ -55,8 +55,7 @@ public class FirebaseDataManager implements IDataManager {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     List<Trainer> trainers = new ArrayList<Trainer>();
-                    for (int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
-                        DataSnapshot snapshot = dataSnapshot.getChildren().iterator().next();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Trainer trainer = snapshot.getValue(Trainer.class);
                         trainers.add(trainer);
                     }
