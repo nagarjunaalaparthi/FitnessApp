@@ -1,24 +1,21 @@
 package com.fitnessapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.fitnessapp.data.FirebaseDataManager;
 import com.fitnessapp.data.IDataManager;
-import com.fitnessapp.data.model.Goal;
 import com.fitnessapp.data.model.Trainer;
+import com.fitnessapp.ui.base.BaseActivity;
 
 import java.util.List;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
         addTrainer();
 
