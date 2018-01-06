@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.fitnessapp.data.model.Event;
 import com.fitnessapp.data.model.Trainer;
 import com.google.android.gms.location.places.PlaceReport;
 import com.google.firebase.database.DataSnapshot;
@@ -96,4 +97,49 @@ public class FirebaseDataManager implements IDataManager {
         }
       });
   }
+
+    @Override
+    public void loadEvents(final @NonNull LoadEventsCallback callback) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    List<Event> events = new ArrayList<>();
+                    for (int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
+                        DataSnapshot snapshot = dataSnapshot.getChildren().iterator().next();
+                        Event event = snapshot.getValue(Event.class);
+                        events.add(event);
+                    }
+
+                    if (callback != null) {
+                        callback.onEventsLoaded(events);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void addEvent(@NonNull Event event,final  @NonNull AddEventsCallBack callback) {
+        mDatabaseReference.child("events").child(event.getId()).setValue(event, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                if (callback != null) {
+                    if (databaseError != null){
+                        callback.onError(databaseError.getMessage());
+                    } else {
+                        callback.onEventAdded();
+                    }
+                }
+            }
+        });
+    }
 }
