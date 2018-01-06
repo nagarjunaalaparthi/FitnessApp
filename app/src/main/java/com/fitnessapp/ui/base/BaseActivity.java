@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.fitnessapp.R;
 import com.fitnessapp.navigation.NavListAdapter;
@@ -28,6 +29,8 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         initNavItems();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         LinearLayoutManager navListManager = new LinearLayoutManager(this);
@@ -37,6 +40,7 @@ public class BaseActivity extends AppCompatActivity {
         navListRecycler.setAdapter(navListAdapter);
 
         setContentView(new TrainersFragment());
+
     }
 
 
