@@ -49,7 +49,7 @@ public class TrainersFragment extends Fragment implements ITrainersListView {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (s.length() > 2) {
-
+                searchTrainers(s.toString());
             }
         }
 
