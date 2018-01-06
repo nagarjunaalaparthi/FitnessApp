@@ -40,6 +40,16 @@ public interface IDataManager {
     void onError(String message);
   }
 
+  interface LoadEventsCallback {
+    void onEventsLoaded(List<Event> events);
+  }
+
+  interface AddEventsCallBack {
+    void onEventAdded();
+
+    void onError(String message);
+  }
+
   void loadGoals(@NonNull IDataManager.LoadGoalsCallback callback);
 
   void searchEventsByLocation(String address, @NonNull IDataManager.SearchEventsCallback callback);
@@ -51,4 +61,8 @@ public interface IDataManager {
   void loadTrainer(@NonNull String goalId, @NonNull IDataManager.LoadTrainerCallback callback);
 
   void addTrainer(@NonNull Trainer trainer, @NonNull IDataManager.AddTrainerCallBack callback);
+
+  void loadEvents(@NonNull IDataManager.LoadEventsCallback callback);
+
+  void addEvent(@NonNull Event event, @NonNull IDataManager.AddEventsCallBack callback);
 }

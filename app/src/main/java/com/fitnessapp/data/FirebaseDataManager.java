@@ -77,6 +77,7 @@ public class FirebaseDataManager implements IDataManager {
 
   }
 
+
   @Override public void loadTrainers(@NonNull final LoadTrainersCallback callback) {
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("trainers");
 
@@ -124,4 +125,48 @@ public class FirebaseDataManager implements IDataManager {
           }
         });
   }
+
+    @Override
+    public void loadEvents(final @NonNull LoadEventsCallback callback) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    List<Event> events = new ArrayList<>();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Event event = snapshot.getValue(Event.class);
+                        events.add(event);
+                    }
+
+                    if (callback != null) {
+                        callback.onEventsLoaded(events);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void addEvent(@NonNull Event event,final  @NonNull AddEventsCallBack callback) {
+        mDatabaseReference.child("events").child(event.getId()).setValue(event, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                if (callback != null) {
+                    if (databaseError != null){
+                        callback.onError(databaseError.getMessage());
+                    } else {
+                        callback.onEventAdded();
+                    }
+                }
+            }
+        });
+    }
 }

@@ -7,8 +7,7 @@ import java.util.UUID;
  * Created by admin on 1/6/2018.
  */
 
-@IgnoreExtraProperties
-public class Event {
+@IgnoreExtraProperties public class Event {
   String id = UUID.randomUUID().toString();
   private String name;
   private String date;
@@ -17,12 +16,12 @@ public class Event {
   private String description;
   private String location;
 
-  public Event(){
+  public Event() {
 
   }
 
   public Event(String name, String date, String duration, String category, String description,
-      String location){
+      String location) {
     this.name = name;
     this.date = date;
     this.duration = duration;
@@ -30,6 +29,7 @@ public class Event {
     this.description = description;
     this.location = location;
   }
+
   public String getId() {
     return id;
   }

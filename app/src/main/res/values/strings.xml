@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">FitnessApp</string>
+  <string name="app_name">FitnessApp</string>
   <string name="hint_search_events">Enter Location</string>
   <string name="label_cancel">Cancel</string>
+  <string name="search_by_location">Search by location</string>
 </resources>

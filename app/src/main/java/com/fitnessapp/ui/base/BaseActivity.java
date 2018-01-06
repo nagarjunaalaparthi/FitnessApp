@@ -6,8 +6,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import com.fitnessapp.R;
 import com.fitnessapp.navigation.NavListAdapter;
+import com.fitnessapp.ui.trainers.TrainersFragment;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +26,8 @@ public class BaseActivity extends AppCompatActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+    setSupportActionBar(myToolbar);
     initNavItems();
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     LinearLayoutManager navListManager = new LinearLayoutManager(this);
@@ -31,16 +35,19 @@ public class BaseActivity extends AppCompatActivity {
     navListRecycler.setLayoutManager(navListManager);
     navListAdapter = new NavListAdapter(this, navItems);
     navListRecycler.setAdapter(navListAdapter);
+
+    setContentView(new TrainersFragment());
   }
 
   protected void initNavItems() {
     navItems = new ArrayList<>();
     navItems.add("Goals");
-    navItems.add("Events Nearby");
-    navItems.add("Coaches Nearby");
+    navItems.add("Events");
+    navItems.add("Trainers Nearby");
+    navItems.add("Search Events");
   }
 
-  protected void setContentView(Fragment fragment) {
+  public void setContentView(Fragment fragment) {
     getSupportFragmentManager().beginTransaction()
         .replace(R.id.fragment_container, fragment)
         .commit();
