@@ -48,8 +48,11 @@ public class TrainersFragment extends Fragment implements ITrainersListView {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s.length() > 2) {
+            if (s.length() > 0) {
                 searchTrainers(s.toString());
+            } else {
+                adapter = new TrainersAdapter(trainers);
+                recyclerView.setAdapter(adapter);
             }
         }
 
@@ -85,12 +88,8 @@ public class TrainersFragment extends Fragment implements ITrainersListView {
                 }
             }
 
-            if (adapter == null) {
-                adapter = new TrainersAdapter(searchedTrainers);
-                recyclerView.setAdapter(adapter);
-            } else {
-                adapter.setTrainers(searchedTrainers);
-            }
+            adapter = new TrainersAdapter(searchedTrainers);
+            recyclerView.setAdapter(adapter);
         }
     }
 

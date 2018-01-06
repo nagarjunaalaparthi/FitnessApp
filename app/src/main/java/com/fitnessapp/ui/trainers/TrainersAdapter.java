@@ -40,7 +40,7 @@ public class TrainersAdapter extends RecyclerView.Adapter<TrainersAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return trainers.size();
+        return trainers == null ? 0 : trainers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
