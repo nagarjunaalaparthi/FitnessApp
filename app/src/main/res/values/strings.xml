@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FitnessApp</string>
+    <string name="search_by_location">Search by location</string>
 </resources>
