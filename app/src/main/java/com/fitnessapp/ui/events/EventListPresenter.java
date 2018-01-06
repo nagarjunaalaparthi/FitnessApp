@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import com.fitnessapp.data.FirebaseDataManager;
 import com.fitnessapp.data.IDataManager;
 import com.fitnessapp.data.model.Event;
-import com.fitnessapp.ui.goalslist.IGoalsListView;
 
 import java.util.List;
 

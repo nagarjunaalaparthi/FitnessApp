@@ -44,10 +44,10 @@ public class BaseActivity extends AppCompatActivity {
         navItems = new ArrayList<>();
         navItems.add("Goals");
         navItems.add("Events Nearby");
-        navItems.add("Coaches Nearby");
+        navItems.add("Trainers Nearby");
     }
 
-    protected void setContentView(Fragment fragment) {
+    public void setContentView(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)

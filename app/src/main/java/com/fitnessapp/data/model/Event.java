@@ -24,6 +24,10 @@ public class Event {
         this.description = description;
         this.location = location;
     }
+
+    public Event() {
+    }
+
     public String getId() {
         return id;
     }

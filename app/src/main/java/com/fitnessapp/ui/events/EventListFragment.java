@@ -8,16 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.fitnessapp.MainActivity;
 import com.fitnessapp.R;
 import com.fitnessapp.data.FirebaseDataManager;
 import com.fitnessapp.data.IDataManager;
 import com.fitnessapp.data.Injection;
 import com.fitnessapp.data.model.Event;
-import com.fitnessapp.data.model.Trainer;
-import com.fitnessapp.ui.goalslist.GoalsListPresenter;
 
 import java.util.List;
 
@@ -44,19 +40,9 @@ public class EventListFragment extends Fragment implements IEventListView{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_events,container);
+        View view = inflater.inflate(R.layout.fragment_events,null);
         mPresenter = new EventListPresenter(Injection.provideFitnessRepository(), this);
-        Event event = new Event("Running Event", "05/01/2018", "1 day", "Running", "Running Event"
-                , "Madhapur");
 
-        Event event1 = new Event("Cycling Event", "05/01/2018", "1 day", "Cycling", "Running Event"
-                , "Kukatpally");
-
-        Event event2 = new Event("Climbing Event", "05/01/2018", "1 week", "Climbing", "Running Event"
-                , "Nanakramguda");
-        addEvents(event1);
-        addEvents(event2);
-        addEvents(event);
         initView(view);
         return view;
     }
@@ -66,7 +52,6 @@ public class EventListFragment extends Fragment implements IEventListView{
         LinearLayoutManager navListManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(navListManager);
         mAdapter =  new EventListAdapter(getContext());
-        mRecyclerView.setAdapter(mAdapter);
 
         mPresenter.loadEvents(true);
     }
@@ -102,6 +87,7 @@ public class EventListFragment extends Fragment implements IEventListView{
     public void showEvents(List<Event> eventList) {
         if(eventList != null && !eventList.isEmpty()){
             mAdapter.setEventList(eventList);
+            mRecyclerView.setAdapter(mAdapter);
         }
     }
 }
