@@ -21,9 +21,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
     private List<Event> mEventList;
     private Context mContext;
 
-    public EventListAdapter(Context context, List<Event> eventList) {
+    public EventListAdapter(Context context) {
         mContext = context;
-        mEventList = eventList;
     }
 
     @Override
@@ -35,6 +34,10 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
         return vh;
     }
 
+    public void setEventList(List<Event> eventList){
+        mEventList = eventList;
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Event event = mEventList.get(position);

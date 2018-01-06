@@ -3,6 +3,7 @@ package com.fitnessapp.ui.events;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,10 @@ import com.fitnessapp.MainActivity;
 import com.fitnessapp.R;
 import com.fitnessapp.data.FirebaseDataManager;
 import com.fitnessapp.data.IDataManager;
+import com.fitnessapp.data.Injection;
 import com.fitnessapp.data.model.Event;
 import com.fitnessapp.data.model.Trainer;
+import com.fitnessapp.ui.goalslist.GoalsListPresenter;
 
 import java.util.List;
 
@@ -22,10 +25,13 @@ import java.util.List;
  * Created by admin on 1/6/2018.
  */
 
-public class EventListFragment extends Fragment {
+public class EventListFragment extends Fragment implements IEventListView{
 
     private RecyclerView mRecyclerView;
     private List<Event> mEventList;
+    private EventListAdapter mAdapter;
+
+
     public static EventListFragment getInstance(){
         EventListFragment fragment = new EventListFragment();
         return fragment;
@@ -39,14 +45,20 @@ public class EventListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_events,container);
-
+       // mPresenter = new EventListPresenter(Injection.provideFitnessRepository(), this);
         addEvents();
         initView(view);
         return view;
     }
 
     private void initView(View view) {
-        mRecyclerView = ()
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.eventListRecycler);
+        LinearLayoutManager navListManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(navListManager);
+        mAdapter =  new EventListAdapter(getContext());
+        mRecyclerView.setAdapter(mAdapter);
+
+
     }
 
 
@@ -67,30 +79,19 @@ public class EventListFragment extends Fragment {
 
         });
     }
-/*    addTrainer();
 
-        FirebaseDataManager.getInstance().loadTrainers(new IDataManager.LoadTrainersCallback() {
-        @Override
-        public void onTrainersLoaded(List< Trainer > trainers) {
-            Toast.makeText(MainActivity.this, "No of trainer : " + trainers.size(), Toast.LENGTH_SHORT).show();
-        }
-    });
+    @Override
+    public void setProgressBar(boolean show) {
 
+    }
 
-    private void addTrainer() {
-        Trainer trainer = new Trainer("Trainer 1", "Running", "500/hr", "Hyderabad", 4.5, 3);
+    @Override
+    public void showError() {
 
-        FirebaseDataManager.getInstance().addTrainer(trainer, new IDataManager.AddTrainerCallBack() {
-            @Override
-            public void onTrianerAdded() {
+    }
 
-            }
+    @Override
+    public void showEvents(List<Event> eventList) {
 
-            @Override
-            public void onError(String message) {
-
-            }
-
-        });
-    }*/
+    }
 }
